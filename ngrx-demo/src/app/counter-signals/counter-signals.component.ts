@@ -1,26 +1,26 @@
-import { Component } from '@angular/core';
-import { Store } from '@ngrx/store';
-import { counterSignalsFeature, increment, decrement, reset } from './store/counter-signals.store';
-import { withSignals } from '@ngrx/signals';
+import { Component, inject } from '@angular/core';
+import { CounterSignalsStore } from './store/counter-signals.store';
 
 @Component({
   selector: 'app-counter-signals',
+  standalone: false,
   templateUrl: './counter-signals.component.html',
-  standalone: true,
-  imports: [],
+  providers: [CounterSignalsStore],
 })
-export class CounterSignalsComponent extends withSignals(Store) {
-  readonly count = this.selectSignal(counterSignalsFeature.selectCount);
+export class CounterSignalsComponent {
+  private readonly store = inject(CounterSignalsStore);
+  
+  readonly count = this.store.count;
 
   increment() {
-    this.dispatch(increment());
+    this.store.increment();
   }
 
   decrement() {
-    this.dispatch(decrement());
+    this.store.decrement();
   }
 
   reset() {
-    this.dispatch(reset());
+    this.store.reset();
   }
 }

@@ -3,13 +3,16 @@ import { CounterStore } from './counter.store';
 
 @Component({
   selector: 'app-counter-component-store',
+  standalone: false,
   templateUrl: './counter-component-store.component.html',
   providers: [CounterStore],
 })
 export class CounterComponentStoreComponent {
-  readonly count$ = this.counterStore.count$;
+  readonly count$;
 
-  constructor(private readonly counterStore: CounterStore) {}
+  constructor(private readonly counterStore: CounterStore) {
+    this.count$ = this.counterStore.count$;
+  }
 
   increment() {
     this.counterStore.increment();

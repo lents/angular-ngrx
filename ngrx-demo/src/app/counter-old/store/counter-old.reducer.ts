@@ -1,3 +1,4 @@
+import { Action } from '@ngrx/store';
 import * as fromCounterOld from './counter-old.actions';
 
 export interface CounterOldState {
@@ -10,7 +11,7 @@ export const initialState: CounterOldState = {
 
 export function counterOldReducer(
   state = initialState,
-  action: fromCounterOld.CounterOldActions
+  action: Action
 ): CounterOldState {
   switch (action.type) {
     case fromCounterOld.INCREMENT:

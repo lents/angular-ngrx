@@ -5,6 +5,7 @@ import { increment, decrement, reset, selectCount } from './store/counter-featur
 
 @Component({
   selector: 'app-counter-feature',
+  standalone: false,
   templateUrl: './counter-feature.component.html',
 })
 export class CounterFeatureComponent {

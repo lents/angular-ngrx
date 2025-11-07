@@ -6,6 +6,7 @@ import { CounterModernState } from './store/counter-modern.reducer';
 
 @Component({
   selector: 'app-counter-modern',
+  standalone: false,
   templateUrl: './counter-modern.component.html',
 })
 export class CounterModernComponent {

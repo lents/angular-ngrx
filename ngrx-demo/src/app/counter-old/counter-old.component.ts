@@ -6,6 +6,7 @@ import { CounterOldState } from './store/counter-old.reducer';
 
 @Component({
   selector: 'app-counter-old',
+  standalone: false,
   templateUrl: './counter-old.component.html',
 })
 export class CounterOldComponent {
