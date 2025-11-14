@@ -1,0 +1,41 @@
+<div class="todo-container">
+  <h2>Todo List (Entity Store)</h2>
+  
+  <div class="todo-stats" *ngIf="!loading()">
+    <p>Total: {{ todos().length }} | Active: {{ activeCount }} | Completed: {{ completedCount }}</p>
+  </div>
+
+  <div class="add-todo">
+    <input 
+      type="text" 
+      [value]="newTodoText()"
+      (input)="updateNewTodoText($event)"
+      (keyup.enter)="addTodo()"
+      placeholder="Add a new todo..."
+      [disabled]="loading()"
+    />
+    <button (click)="addTodo()" [disabled]="loading() || !newTodoText().trim()">
+      Add Todo
+    </button>
+  </div>
+
+  <div *ngIf="loading()" class="loading">
+    Loading todos...
+  </div>
+
+  <div *ngIf="!loading()" class="todo-list">
+    <div *ngFor="let todo of todos()" class="todo-item" [class.completed]="todo.completed">
+      <input 
+        type="checkbox" 
+        [checked]="todo.completed" 
+        (change)="toggleTodo(todo.id)"
+      />
+      <span class="todo-text">{{ todo.text }}</span>
+      <button (click)="removeTodo(todo.id)" class="remove-btn">×</button>
+    </div>
+  </div>
+
+  <div *ngIf="completedCount > 0" class="actions">
+    <button (click)="clearCompleted()">Clear Completed ({{ completedCount }})</button>
+  </div>
+</div>
